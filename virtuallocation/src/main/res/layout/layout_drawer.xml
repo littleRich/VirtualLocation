@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    >
+    <TextView
+        android:id="@+id/tv_add_app"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添加程序"
+        android:drawableLeft="@mipmap/ic_drawer_add"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_precise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="精确定位"
+        android:drawableLeft="@mipmap/ic_drawer_add"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        />
+    <TextView
+        android:id="@+id/tv_about_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="关于"
+        android:drawableLeft="@mipmap/ic_drawer_me"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        />
+</LinearLayout>

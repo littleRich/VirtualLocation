@@ -1,0 +1,151 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:custom="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical">
+
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/bmapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            custom:cardElevation="8dp"
+            >
+
+            <top.littlerich.virtuallocation.view.TopBanner
+                android:id="@+id/topbanner"
+                style="@style/TopBannerBaseStyle"
+                android:layout_alignParentTop="true"
+                custom:leftButtonBackground="@mipmap/ic_expand"
+                custom:leftButtonHeight="15dp"
+                custom:leftButtonVisiable="true"
+                custom:leftButtonWidth="20dp"
+                custom:rightButtonBackground="@mipmap/ic_topbar_search"
+                custom:titleText="@string/app_name"
+                custom:titleTextColors="#c1030303"/>
+
+        </android.support.v7.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:background="@drawable/bg_notice"
+            android:drawableLeft="@mipmap/ic_virtual_addr"
+            android:drawablePadding="7dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:text="伪造地址"
+            android:textColor="#ff665e"
+            />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bg_botton_shadow"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="25dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="13dp"
+            >
+            <ImageView
+                android:id="@+id/iv_location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_with_round"
+                android:padding="10dp"
+                android:src="@mipmap/ic_current_location"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="重置"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="13sp"
+                android:textColor="#423f24"
+                />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            >
+            <Button
+                android:id="@+id/bt_Ok"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/bg_begin_location"
+                android:text="立即穿越"
+                android:textColor="#fbd12d"
+                />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="13dp"
+            >
+            <ImageView
+                android:id="@+id/iv_stop_location"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/bg_with_round"
+                android:clickable="true"
+                android:padding="10dp"
+                android:src="@mipmap/ic_stop_location"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="停止"
+                android:layout_margin="4dp"
+                android:layout_gravity="center_horizontal"
+                android:textSize="13sp"
+                android:textColor="#423f24"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <top.littlerich.virtuallocation.view.CircleWaveView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        />
+
+</FrameLayout>

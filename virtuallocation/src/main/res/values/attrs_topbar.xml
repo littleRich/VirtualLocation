@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="topBanner">
+        <attr name="leftButtonText" format="string"/>
+        <attr name="leftButtonTextSize" format="dimension"/>
+        <attr name="leftButtonBackground" format="reference|color"/>
+        <attr name="leftButtonTextColor" format="color"/>
+        <attr name="leftButtonVisiable" format="boolean"/>
+        <attr name="titleText" format="string"/>
+        <attr name="titleTextSize" format="dimension"/>
+        <attr name="titleTextColors" format="color"/>
+        <attr name="rightButtonText" format="string"/>
+        <attr name="rightButtonTextSize" format="dimension"/>
+        <attr name="rightButtonWidth" format="dimension"/>
+        <attr name="rightButtonHeight" format="dimension"/>
+        <attr name="leftButtonWidth" format="dimension"/>
+        <attr name="leftButtonHeight" format="dimension"/>
+        <attr name="rightButtonBackground" format="reference|color"/>
+        <attr name="rightButtonTextColor" format="color"/>
+        <attr name="rightButtonVisiable" format="boolean"/>
+    </declare-styleable>
+</resources>

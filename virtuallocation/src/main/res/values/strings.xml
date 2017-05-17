@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">筋斗云</string>
+    <string name="app_introduce">   筋斗云是一款虚拟定位软件，适用于微信、微博、考勤签到等社交办公软件，让你随心所欲的改变手机地理位置！</string>
+    <string name="app_version_copyright">当前版本：1.8.8(build 12035) \n@2017 littlerich.top All right reserved</string>
+    <string name="item_application_name">应用程序名</string>
+</resources>

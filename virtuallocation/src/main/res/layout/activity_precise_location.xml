@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="top.littlerich.virtuallocation.activity.PreciseLocationActivity">
+
+
+    <top.littlerich.virtuallocation.view.TopBanner
+        android:id="@+id/topbanner"
+        style="@style/TopBannerBaseStyle"
+        android:layout_alignParentTop="true"
+        custom:leftButtonBackground="@mipmap/ic_reback"
+        custom:leftButtonHeight="20dp"
+        custom:leftButtonVisiable="true"
+        custom:leftButtonWidth="25dp"
+        custom:titleText="精确定位"
+        custom:titleTextColors="#c1030303"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        >
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/et_latitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入精确经度值"
+                android:inputType="numberDecimal"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            >
+
+            <EditText
+                android:id="@+id/et_longitude"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="请输入精确维度值"
+                android:inputType="numberDecimal"
+
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_precise_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="15dp"
+            android:background="#36cace"
+            android:textColor="#fff"
+            android:text="精确定位"/>
+        <ProgressBar
+            android:id="@+id/pb_locating"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:padding="15dp"
+            android:background="@drawable/bg_with_round"
+            android:textColor="#fff"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="※ 已穿越到指定地点，快打开需要虚拟定位的APP试试！"
+        android:layout_margin="20dp"
+        android:layout_below="@id/topbanner"
+        android:lineSpacingMultiplier="1.2"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone"
+        />
+</RelativeLayout>

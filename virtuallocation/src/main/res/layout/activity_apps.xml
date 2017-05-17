@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="top.littlerich.virtuallocation.activity.AppsActivity">
+
+    <top.littlerich.virtuallocation.view.TopBanner
+        android:id="@+id/topbanner"
+        style="@style/TopBannerBaseStyle"
+        android:layout_alignParentTop="true"
+        custom:leftButtonBackground="@mipmap/ic_reback"
+        custom:rightButtonBackground="@mipmap/ic_filter"
+        custom:leftButtonHeight="20dp"
+        custom:leftButtonVisiable="true"
+        custom:leftButtonWidth="25dp"
+        custom:titleTextColors="#c1030303"
+        custom:titleText="添加Hook程序"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/my_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"/>
+        <ProgressBar
+            android:id="@+id/pb_progressbar"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:indeterminateDrawable="@drawable/bg_progressbar"/>
+            />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="top.littlerich.virtuallocation">
+
+    <uses-permission
+        android:name="android.permission.ACCESS_MOCK_LOCATION"
+        tools:ignore="MockLocation"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".base.AppApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true"/>
+
+        <!-- 模块描述 -->
+        <meta-data
+            android:name="xposeddescription"
+            android:value="微信运行虚拟定位"/>
+
+        <!-- XposedBridgeApi的最低版本号 -->
+        <meta-data
+            android:name="xposedminversion"
+            android:value="54"/>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="BecztxVZRjUeuSrMEMDMeDCSGkR1Dnsv"/>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote">
+        </service>
+
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".activity.AboutActivity">
+        </activity>
+        <activity android:name=".activity.PreciseLocationActivity">
+        </activity>
+        <activity android:name=".activity.AppsActivity">
+        </activity>
+    </application>
+
+</manifest>

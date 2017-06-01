@@ -18,19 +18,30 @@ import android.util.Log;
 
 public class LocationUtil {
 
-    public static Double mLatitude = 30.6363334898;
-    public static Double mLongitude = 104.0486168861;
+    private static final String TAG = "silence";
+
+    private static Double mLatitude = 30.6363334898;
+    private static Double mLongitude = 104.0486168861;
 
     private static LocationManager locationManager;
     private static boolean canMockPosition;
+    /**
+     * 判断在Android6.0+上是否将本程序添加到ADB模拟定位中
+     */
     public static boolean hasAddTestProvider = false;
     private static Thread mMockThread;
 
 
-    public static void initLocation(Context context) {
+    /**
+     * 初始化模拟定位，并检测是否开启ADB模拟定位
+     * @param context
+     * @return
+     */
+    public static boolean initLocation(Context context) {
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         canMockPosition = (Settings.Secure.getInt(context.getContentResolver(), Settings.Secure.ALLOW_MOCK_LOCATION, 0) != 0) || Build.VERSION.SDK_INT > 22;
-        Log.d("xqf", "hasAddTestProvider:" + canMockPosition);
+        Log.d(TAG, "hasAddTestProvider:" + canMockPosition);
+        return canMockPosition;
     }
 
     /**
@@ -63,14 +74,14 @@ public class LocationUtil {
                 locationManager.setTestProviderEnabled(providerStr, true);
                 locationManager.requestLocationUpdates(providerStr, 0, 0, new LocationStatuListener());
                 locationManager.setTestProviderStatus(providerStr, LocationProvider.AVAILABLE, null, System.currentTimeMillis());
-                Log.i("xqf","already open GPS!");
+                Log.i(TAG,"already open GPS!");
                 // 模拟位置可用
                 hasAddTestProvider = true;
-                Log.d("xqf", "hasAddTestProvider：" + hasAddTestProvider);
+                Log.d(TAG, "hasAddTestProvider：" + hasAddTestProvider);
                 canMockPosition = true;
             } catch (Exception e) {
                 canMockPosition = false;
-                Log.d("xqf", "初始化异常：" + e);
+                Log.d(TAG, "初始化异常：" + e);
                 throw  e;
             }
         }
@@ -91,8 +102,8 @@ public class LocationUtil {
                                 Log.d("xqf", "定位服务未打开");
                                 continue;
                             }
-                            setLocation(mLatitude, mLongitude);
-                            Log.d("xqf", "setLocation240=latitude:" + mLatitude + "?longitude:" + mLongitude);
+                            setLocation(LocationUtil.mLatitude, LocationUtil.mLongitude);
+                            Log.d(TAG, "setLocation240=latitude:" + mLatitude + "?longitude:" + mLongitude);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         } catch (Exception e) {
@@ -106,7 +117,7 @@ public class LocationUtil {
     }
 
     /**
-     * setLocation 设置GPS的位置
+     * GPS定位需要不停的刷新经纬度值
      */
     private static void setLocation(double latitude, double longitude) throws Exception{
         try {
@@ -142,6 +153,11 @@ public class LocationUtil {
         }
     }
 
+    /**
+     * 设置地理经纬度值
+     * @param mLongitude
+     * @param mLatitude
+     */
     public static void setLongitudeAndLatitude(Double mLongitude, Double mLatitude) {
         LocationUtil.mLatitude = mLatitude;
         LocationUtil.mLongitude = mLongitude;
@@ -155,7 +171,7 @@ public class LocationUtil {
         public void onLocationChanged(Location location) {
             double lat = location.getLatitude();
             double lng = location.getLongitude();
-            Log.i("gps", String.format("location: x=%s y=%s", lat, lng));
+            Log.i(TAG, String.format("location: x=%s y=%s", lat, lng));
         }
 
         @Override

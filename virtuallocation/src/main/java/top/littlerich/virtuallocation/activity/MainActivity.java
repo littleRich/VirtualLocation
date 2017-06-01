@@ -33,6 +33,7 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption;
 
 import top.littlerich.virtuallocation.R;
 import top.littlerich.virtuallocation.base.BaseActivity;
+import top.littlerich.virtuallocation.common.AppApplication;
 import top.littlerich.virtuallocation.listener.AsyncLocationResultListener;
 import top.littlerich.virtuallocation.listener.GeoCoderListener;
 import top.littlerich.virtuallocation.listener.MapClickListener;
@@ -50,7 +51,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private String mMockProviderName = LocationManager.GPS_PROVIDER;
     private Button bt_Ok;
     private LocationManager locationManager;
-    public static double latitude = 25.2358842413, longitude = 119.2035484314;// 默认莆田
+    public static double latitude = 25.2358842413, longitude = 119.2035484314;
+
     private Thread thread;// 需要一个线程一直刷新
     private Boolean RUN = true;
     private TextView tv_location;
@@ -200,8 +202,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
      */
     private void inilocation() {
         try {
-            LocationUtil.initLocation(MainActivity.this);
-            LocationUtil.initLocationManager();
+            if (LocationUtil.initLocation(MainActivity.this)) {
+                LocationUtil.initLocationManager();
+            } else {//未开启ADB模拟定位功能，则只能选择HOOK技术
+
+            }
         } catch (Exception e) {
             Toast.makeText(MainActivity.this, "虚拟定位功能未打开!", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
@@ -235,7 +240,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
      * initOverlay 设置覆盖物，这里就是地图上那个点
      */
     private void initOverlay() {
-        LatLng ll = new LatLng(latitude, longitude);
+        LatLng ll = new LatLng(AppApplication.mMockGps.mLatitude, AppApplication.mMockGps.mLongitude);
         OverlayOptions oo = new MarkerOptions().position(ll).icon(bd).zIndex(9)
                 .draggable(true);
         mMarker = (Marker) (mBaiduMap.addOverlay(oo));
@@ -330,6 +335,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                         LocationUtil.initLocationManager();
                     }
                     LocationUtil.setLongitudeAndLatitude(curLatlng.longitude, curLatlng.latitude);
+                    AppApplication.mMockGps.mLatitude = curLatlng.latitude;
+                    AppApplication.mMockGps.mLongitude = curLatlng.longitude;
                     bt_Ok.setText("穿越完成");
                 } catch (Exception e) {
                     e.printStackTrace();

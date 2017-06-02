@@ -69,11 +69,38 @@
 <h2>原理</h2>
 <p>本程序有两种方式可以实现虚拟定位：</p>
 <ol>
-<li>Android应用端发送到Android应用端（必须安装应用）</li>
-<li>通过Web浏览器来实现文件的传送 （不必安装应用）</li>
+<li>通过ADB模拟定位功能</li>
+<li>通过Hook修改获取经纬度API的值 （必需安装Xposed以及ROOT）</li>
 </ol>
-<p>第一种方式主要是是通过设备间发送文件。 文件传输在文件发送端或者是文件接收端通过自定义协议的Socket通信来实现。由于文件接收方和文件发送方都要有文件的缩略图，这里采用了header + body的自定义协议, header部分包括了文件的信息（长度，大小，缩略图）， body部分就是文件。</p>
-<p>第二种方式主要是在android应用端架设微型Http服务器来实现文件的传输。这里可以用ftp来实现，为什么不用ftp呢？因为没有缩略图，这是重点！</p>
+
+程序运行的定位
+<a href="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" target="_blank"><img src="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" alt="Alt text" style="max-width:100%;"></a>
+
+<p>第一种方式主要是是通过ADB模拟定位功能，再开启线程，不断的更新LocationManager的经纬度值，即可是实现定位模拟定位</p>
+
+```java
+	mMockThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try {
+                            Thread.sleep(500);
+                            if (!hasAddTestProvider) {
+                                Log.d("xqf", "针对Android6.0+系统，需要单独把程序调加到ADB模拟定位服务中");
+                                continue;
+                            }
+                            setLocation(LocationUtil.mLatitude, LocationUtil.mLongitude);
+                            Log.d("xqf", "setLocation240=latitude:" + mLatitude + "?longitude:" + mLongitude);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                 }
+                }
+            });
+            mMockThread.start();
+```
+
+<p>第二种方式主要是采用Hook修改系统API。目前很多程序都调用了isFromMockProvider方法来检测用户是否打开了ADB模拟定位功能，所以我又采用了Hook方式，就不怕不能虚拟定位了，具体如何Hook，可以看我的一篇博客：<a href="http://littlerich.top/2017/01/17/%E5%9F%BA%E4%BA%8EXposed%E6%A1%86%E6%9E%B6Hook%E5%AE%9A%E4%BD%8D%E5%8A%9F%E8%83%BD%E6%9D%A5%E7%A0%B4%E8%A7%A3QQ%E7%9A%84LBS%E7%BA%A2%E5%8C%85/">基于Xposed框架Hook定位功能来破解QQ的LBS红包</a></p>
 
 ----------
 

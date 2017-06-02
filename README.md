@@ -73,8 +73,8 @@
 <li>通过Hook修改获取经纬度API的值 （必需安装Xposed以及ROOT）</li>
 </ol>
 
-程序运行的定位
-<a href="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" target="_blank"><img src="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" alt="Alt text" style="max-width:100%;"></a>
+程序代码设计流程图如下：<br/>
+<img href="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" target="_blank"><img src="https://github.com/littleRich/VirtualLocation/blob/master/ShotScreen/code_design.png?raw=true" alt="Alt text" style="max-width:100%;"></img>
 
 <p>第一种方式主要是是通过ADB模拟定位功能，再开启线程，不断的更新LocationManager的经纬度值，即可是实现定位模拟定位</p>
 
